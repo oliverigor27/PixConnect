@@ -1,19 +1,15 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import dotenv from 'dotenv';
 import http from 'node:http';
+
+import { route } from './routes';
 
 dotenv.config();
 
 const app = express();
 
 app.use(express.json());
+app.use(route);
 
-app.get('/', (req: Request, res: Response) => {
-    res.status(200).json(
-        {
-            message: "Hello World!"
-        }
-    )
-});
 
 http.createServer(app).listen(3000, () => console.log("Server is running!"));
